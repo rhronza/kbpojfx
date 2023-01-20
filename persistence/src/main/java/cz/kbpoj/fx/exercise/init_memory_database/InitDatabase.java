@@ -14,6 +14,12 @@ import java.util.Set;
 
 @Component
 public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> {
+    public static final LocalDate COURSE_DAY = LocalDate.parse("2023-01-15");
+    public static final String CURRENCY_EUR = "EUR";
+    public static final String CURRENCY_USD = "CURRENCY_USD";
+    public static final String CURRENCY_INDIAN_RUPIE = "INR";
+    public static final LocalDate COURSE_DAY_WITHOUT_COURSES = LocalDate.parse("2023-01-06");
+    public static final LocalDate COURSE_DAY_DUPLICATED = LocalDate.parse("2023-01-07");
     private final CurrencyCourseRepository currencyCourseRepository;
     private final DailyStatementEntityRepository dailyStatementEntityRepository;
 
@@ -24,18 +30,26 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("2023-01-06"), null));
-        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("2023-01-07"), null));
-        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("2023-01-07"), null));
+        initDaysWithoutCourses();
 
+        initCourseDay();
+    }
+
+    private void initCourseDay() {
         Set<CurrencyCourseEntity> courseEntities = Set.of(
-                currencyCourseRepository.save(new CurrencyCourseEntity(null, "EUR", 1, 23.88F)),
-                currencyCourseRepository.save(new CurrencyCourseEntity(null, "USD", 1, 22.03F)),
-                currencyCourseRepository.save(new CurrencyCourseEntity(null, "INR", 100, 27.241F))
+                currencyCourseRepository.save(new CurrencyCourseEntity(null, CURRENCY_EUR, 1, 23.88F)),
+                currencyCourseRepository.save(new CurrencyCourseEntity(null, CURRENCY_USD, 1, 22.03F)),
+                currencyCourseRepository.save(new CurrencyCourseEntity(null, CURRENCY_INDIAN_RUPIE, 100, 27.241F))
         );
         Set<CurrencyCourseEntity> courseEntitiesInserted = new HashSet<>();
         courseEntities.forEach(courseEntity -> courseEntitiesInserted.add(currencyCourseRepository.save(courseEntity)));
-        DailyStatementEntity dailyStatementEntity = new DailyStatementEntity(null, LocalDate.parse("2023-01-15"), courseEntitiesInserted);
+        DailyStatementEntity dailyStatementEntity = new DailyStatementEntity(null, COURSE_DAY, courseEntitiesInserted);
         dailyStatementEntityRepository.save(dailyStatementEntity);
+    }
+
+    private void initDaysWithoutCourses() {
+        dailyStatementEntityRepository.save(new DailyStatementEntity(null, COURSE_DAY_WITHOUT_COURSES, null));
+        dailyStatementEntityRepository.save(new DailyStatementEntity(null, COURSE_DAY_DUPLICATED, null));
+        dailyStatementEntityRepository.save(new DailyStatementEntity(null, COURSE_DAY_DUPLICATED, null));
     }
 }
