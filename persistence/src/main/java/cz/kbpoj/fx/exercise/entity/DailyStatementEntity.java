@@ -19,9 +19,9 @@ public class DailyStatementEntity {
     public DailyStatementEntity() {
     }
 
-    public DailyStatementEntity(Long id, LocalDate couserDay, Set<CurrencyCourseEntity> currencyCourseEntities) {
+    public DailyStatementEntity(Long id, LocalDate courseDay, Set<CurrencyCourseEntity> currencyCourseEntities) {
         this.id = id;
-        this.couserDay = couserDay;
+        this.courseDay = courseDay;
         this.currencyCourseEntities = currencyCourseEntities;
     }
 
@@ -31,7 +31,7 @@ public class DailyStatementEntity {
     private Long id;
 
     @Column(name = "courseday")
-    private LocalDate couserDay;
+    private LocalDate courseDay;
 
 
     //    @OneToMany(mappedBy = "currencyCourseEntity")
@@ -46,12 +46,12 @@ public class DailyStatementEntity {
         this.id = id;
     }
 
-    public LocalDate getCouserDay() {
-        return couserDay;
+    public LocalDate getCourseDay() {
+        return courseDay;
     }
 
-    public void setCouserDay(LocalDate couserDay) {
-        this.couserDay = couserDay;
+    public void setCourseDay(LocalDate couserDay) {
+        this.courseDay = couserDay;
     }
 
     public Set<CurrencyCourseEntity> getCurrencyCourseEntities() {
@@ -68,7 +68,7 @@ public class DailyStatementEntity {
         if (!(o instanceof DailyStatementEntity that)) return false;
 
         if (!getId().equals(that.getId())) return false;
-        if (getCouserDay() != null ? !getCouserDay().equals(that.getCouserDay()) : that.getCouserDay() != null)
+        if (getCourseDay() != null ? !getCourseDay().equals(that.getCourseDay()) : that.getCourseDay() != null)
             return false;
         return getCurrencyCourseEntities() != null ? getCurrencyCourseEntities().equals(that.getCurrencyCourseEntities()) : that.getCurrencyCourseEntities() == null;
     }
@@ -76,7 +76,7 @@ public class DailyStatementEntity {
     @Override
     public int hashCode() {
         int result = getId().hashCode();
-        result = 31 * result + (getCouserDay() != null ? getCouserDay().hashCode() : 0);
+        result = 31 * result + (getCourseDay() != null ? getCourseDay().hashCode() : 0);
         result = 31 * result + (getCurrencyCourseEntities() != null ? getCurrencyCourseEntities().hashCode() : 0);
         return result;
     }
@@ -85,7 +85,7 @@ public class DailyStatementEntity {
     public String toString() {
         return new StringJoiner(", ", DailyStatementEntity.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
-                .add("couserDay=" + couserDay)
+                .add("couserDay=" + courseDay)
                 .add("currencyCourseEntities=" + currencyCourseEntities)
                 .toString();
     }
