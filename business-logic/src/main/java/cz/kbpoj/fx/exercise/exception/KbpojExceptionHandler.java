@@ -25,4 +25,15 @@ public class KbpojExceptionHandler extends ResponseEntityExceptionHandler {
                         List.of(new KeyValue("source and target currency", ex.getCurrency().toString()))),
                 HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(KbpojNotFoundException.class)
+    public ResponseEntity<Object> kbpojNotFoundExceptionHandler(KbpojNotFoundException ex) {
+        log.error(ex.getErrorMessage());
+        return new ResponseEntity<>(
+                new ErrorDto(
+                        ex.getErrorMessage(),
+                        HttpStatus.BAD_REQUEST,
+                        ex.getKeyValueList()),
+                HttpStatus.BAD_REQUEST);
+    }
 }
