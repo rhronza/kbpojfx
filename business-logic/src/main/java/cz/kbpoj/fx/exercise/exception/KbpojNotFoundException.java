@@ -1,9 +1,8 @@
 package cz.kbpoj.fx.exercise.exception;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class KbpojNotFoundException extends RuntimeException implements Serializable {
+public class KbpojNotFoundException extends RuntimeException {
     final String errorMessage;
 
     final transient List<KeyValue> keyValueList;
