@@ -32,8 +32,8 @@ public class KbpojExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(
                 new ErrorDto(
                         ex.getErrorMessage(),
-                        HttpStatus.BAD_REQUEST,
+                        HttpStatus.NOT_FOUND,
                         ex.getKeyValueList()),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.NOT_FOUND);
     }
 }
