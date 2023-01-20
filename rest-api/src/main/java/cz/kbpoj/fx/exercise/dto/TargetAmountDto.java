@@ -1,6 +1,6 @@
 package cz.kbpoj.fx.exercise.dto;
 
-public record TargetAmount(
+public record TargetAmountDto(
         Float targetAmount
 ) {
 }

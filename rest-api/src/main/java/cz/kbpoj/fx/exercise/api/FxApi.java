@@ -1,6 +1,7 @@
 package cz.kbpoj.fx.exercise.api;
 
-import cz.kbpoj.fx.exercise.dto.TargetAmount;
+import cz.kbpoj.fx.exercise.dto.CoursesDto;
+import cz.kbpoj.fx.exercise.dto.TargetAmountDto;
 import cz.kbpoj.fx.exercise.enumeration.Currency;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,17 +15,22 @@ import java.time.LocalDate;
 
 @RequestMapping("/kbpoj")
 public interface FxApi {
-    //TODO dokumentace podle https://www.baeldung.com/spring-rest-openapi-documentation
     @ApiResponse(
             responseCode = "200",
-            description = "Výpočtená částka"
+            description = "Vypočtená částka"
     )
-    @GetMapping(value = "/transfer-of-money")
-    default ResponseEntity<TargetAmount> makeTransferOfMoney(
-            @RequestParam(value = "dayCourse") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dayCourse,
+    @GetMapping(value = "/transfer")
+    default ResponseEntity<TargetAmountDto> makeTransferOfMoney(
+            @RequestParam(value = "Kurz ke dni") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dayCourse,
             @RequestParam(value = "Výchozí měna") Currency sourceCurrency,
             @RequestParam(value = "Výchozí částka") Float amount,
             @RequestParam(value = "Cílová měna") Currency targetCurrency) {
-        return new ResponseEntity<>(new TargetAmount(null), HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<>(new TargetAmountDto(null), HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @GetMapping(value = "/courses")
+    default ResponseEntity<CoursesDto> getDayCource(
+            @RequestParam(value = "Kurzy ke dni") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dayCourse) {
+        return new ResponseEntity<>(new CoursesDto(null, null), HttpStatus.NOT_IMPLEMENTED);
     }
 }
