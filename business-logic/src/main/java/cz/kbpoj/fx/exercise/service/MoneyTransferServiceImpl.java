@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implementation of {@link MoneyTransferService }
+ */
 @Service
 public class MoneyTransferServiceImpl implements MoneyTransferService {
 
@@ -47,6 +50,13 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
         return new TargetAmount(targetAmount.targetAmount(), targetCurrency);
     }
 
+
+    /**
+     * Searches course for the specified day.
+     * @param dayCourse  specified day
+     * @param targetCurrency currency
+     * @return object with searched course
+     */
     private CurrencyCourseEntity geSearchedCourse(LocalDate dayCourse, Currency targetCurrency) {
         List<DailyStatementEntity> byCourseDay = dailyStatementEntityRepository
                 .findByCourseDay(dayCourse);

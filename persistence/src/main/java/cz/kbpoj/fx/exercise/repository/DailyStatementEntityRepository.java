@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
-
+/**
+ * Repository for entity {@link DailyStatementEntity}
+ */
 @Repository
 public interface DailyStatementEntityRepository extends JpaRepository<DailyStatementEntity, Long> {
     List<DailyStatementEntity> findByCourseDay(LocalDate date);

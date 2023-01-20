@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * Implementation of {@link CourseService }
+ */
 @Service
 public class CourseServiceImpl implements CourseService {
     private final DailyStatementEntityRepository dailyStatementEntityRepository;

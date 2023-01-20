@@ -8,7 +8,9 @@ import cz.kbpoj.fx.exercise.service.MoneyTransferService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-
+/**
+ * Implementation of {@link MoneyTransferFacade }
+ */
 @Service
 public class MoneyTransferFacadeImpl implements MoneyTransferFacade {
 
@@ -18,6 +20,15 @@ public class MoneyTransferFacadeImpl implements MoneyTransferFacade {
         this.moneyTransferService = moneyTransferService;
     }
 
+
+    /**
+     * Implementation o money transfer.
+      * @param dayCourse day for which exchange rate sused
+     * @param sourceCurrency source currency cource
+     * @param amount money amount
+     * @param targerCurrency target currency cource
+     * @return  object with target money amount
+     */
     @Override
     public TargetAmount make(LocalDate dayCourse, Currency sourceCurrency, Float amount, Currency targerCurrency) {
         if (LocalDate.now().minusMonths(1).isAfter(dayCourse)) {

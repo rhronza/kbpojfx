@@ -15,10 +15,6 @@ import java.time.LocalDate;
 
 @RequestMapping("/kbpoj")
 public interface FxApi {
-    @ApiResponse(
-            responseCode = "200",
-            description = "Vypočtená částka"
-    )
     @GetMapping(value = "/transfer")
     default ResponseEntity<TargetAmountDto> makeTransferOfMoney(
             @RequestParam(value = "Kurz ke dni") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dayCourse,
@@ -28,6 +24,10 @@ public interface FxApi {
         return new ResponseEntity<>(new TargetAmountDto(null), HttpStatus.NOT_IMPLEMENTED);
     }
 
+    @ApiResponse(
+            responseCode = "200",
+            description = "Přehled kurzů v databázi pro zadaný den"
+    )
     @GetMapping(value = "/courses")
     default ResponseEntity<CoursesDto> getDayCource(
             @RequestParam(value = "Kurzy ke dni") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dayCourse) {

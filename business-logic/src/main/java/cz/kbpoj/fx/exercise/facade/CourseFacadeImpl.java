@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+/**
+ * Implementation of {@link CourseFacade }
+ */
 @Service
 public class CourseFacadeImpl implements CourseFacade {
 
