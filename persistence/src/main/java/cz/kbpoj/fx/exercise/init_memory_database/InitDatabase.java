@@ -24,9 +24,9 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("1995-05-13"), null));
-        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("1995-05-13"), null));
-        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("1996-05-13"), null));
+        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("2023-01-06"), null));
+        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("2023-01-07"), null));
+        dailyStatementEntityRepository.save(new DailyStatementEntity(null, LocalDate.parse("2023-01-07"), null));
 
         Set<CurrencyCourseEntity> courseEntities = Set.of(
                 currencyCourseRepository.save(new CurrencyCourseEntity(null, "EUR", 1, 23.88F)),
@@ -35,7 +35,7 @@ public class InitDatabase implements ApplicationListener<ContextRefreshedEvent> 
         );
         Set<CurrencyCourseEntity> courseEntitiesInserted = new HashSet<>();
         courseEntities.forEach(courseEntity -> courseEntitiesInserted.add(currencyCourseRepository.save(courseEntity)));
-        DailyStatementEntity dailyStatementEntity = new DailyStatementEntity(null, LocalDate.parse("2004-05-13"), courseEntitiesInserted);
+        DailyStatementEntity dailyStatementEntity = new DailyStatementEntity(null, LocalDate.parse("2023-01-15"), courseEntitiesInserted);
         dailyStatementEntityRepository.save(dailyStatementEntity);
     }
 }
