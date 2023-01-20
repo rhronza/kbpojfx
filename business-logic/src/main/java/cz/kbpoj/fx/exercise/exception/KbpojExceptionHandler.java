@@ -26,6 +26,18 @@ public class KbpojExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(KbpojDayIsOlderThenOneMonthException.class)
+    public ResponseEntity<Object> kbpojDayIsOlderThenOneMonthExceptionHandler(KbpojDayIsOlderThenOneMonthException ex) {
+        log.error(ex.getErrorMessage());
+        return new ResponseEntity<>(
+                new ErrorDto(
+                        ex.getErrorMessage(),
+                        HttpStatus.BAD_REQUEST,
+                        List.of(new KeyValue("date", ex.getDate().toString()))),
+                HttpStatus.BAD_REQUEST);
+    }
+
+
     @ExceptionHandler(KbpojNotFoundException.class)
     public ResponseEntity<Object> kbpojNotFoundExceptionHandler(KbpojNotFoundException ex) {
         log.error(ex.getErrorMessage());
