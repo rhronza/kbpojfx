@@ -1,4 +1,4 @@
-package cz.kbpoj.fx.exercise.kbpojfx;
+package cz.kbpoj.fx.exercise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
