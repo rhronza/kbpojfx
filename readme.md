@@ -1,6 +1,12 @@
      Aplikace pro výpočet převodu peněžních částek pomocí kurzových převodů (úloha k příjímacímu řízení do Pojišťovny KB)
 
-úloha počítá převody:
+aplikace je rozdělena do 4 modulů:
+1. boot
+2. business-logic
+3. persistence
+4. rest-api
+
+počítá převody:
 1. z cizí měny do CZK
 2. z CZK do cizí měny 
 3. převody mezi cizími měnami (v tomto případě se částka nejprve přepočítá do CZK a z CZK do cílové cizí měny)
